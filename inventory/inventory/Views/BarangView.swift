@@ -8,8 +8,30 @@
 import SwiftUI
 
 struct BarangView: View {
+    @EnvironmentObject var barangVM: BarangViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                ListBarangView(barangVM: barangVM)
+            }
+            .navigationTitle("Barang")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        barangVM.setDefaultForm()
+                        barangVM.status = "create"
+                        barangVM.isPresented.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .imageScale(.large)
+                    }
+                }
+            }
+            .sheet(isPresented: $barangVM.isPresented) {
+                BarangFormView(barangVM: barangVM, isPresented: $barangVM.isPresented)
+            }
+        }
     }
 }
 
