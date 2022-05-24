@@ -21,6 +21,7 @@
 		FADDFCE6283CA7EA00007104 /* KaryawanCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */; };
 		FADDFCE9283CA82D00007104 /* KaryawanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE8283CA82D00007104 /* KaryawanModel.swift */; };
 		FADDFCEB283CA9A800007104 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEA283CA9A800007104 /* TabBarView.swift */; };
+		FADDFCED283CBCF300007104 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEC283CBCF300007104 /* LoginViewModel.swift */; };
 		FAFE575A283A352F004F151D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE5759283A352F004F151D /* LoginView.swift */; };
 		FAFE575D283A368A004F151D /* InventoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE575C283A368A004F151D /* InventoryHelper.swift */; };
 		FAFE576F283A8301004F151D /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE576E283A8301004F151D /* DashboardView.swift */; };
@@ -66,6 +67,7 @@
 		FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaryawanCoreDataHelper.swift; sourceTree = "<group>"; };
 		FADDFCE8283CA82D00007104 /* KaryawanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaryawanModel.swift; sourceTree = "<group>"; };
 		FADDFCEA283CA9A800007104 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		FADDFCEC283CBCF300007104 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FAFE5759283A352F004F151D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FAFE575C283A368A004F151D /* InventoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryHelper.swift; sourceTree = "<group>"; };
 		FAFE576E283A8301004F151D /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				FADDFCE1283CA62E00007104 /* KaryawanViewModel.swift */,
+				FADDFCEC283CBCF300007104 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				FAFE5773283BFA03004F151D /* ListKaryawanView.swift in Sources */,
 				FADA7F582838C7B700916152 /* inventory.xcdatamodeld in Sources */,
 				FADA7F552838C7B700916152 /* Persistence.swift in Sources */,
+				FADDFCED283CBCF300007104 /* LoginViewModel.swift in Sources */,
 				FAFE576F283A8301004F151D /* DashboardView.swift in Sources */,
 				FADA7F4E2838C7B500916152 /* ContentView.swift in Sources */,
 				FAFE575A283A352F004F151D /* LoginView.swift in Sources */,
