@@ -40,6 +40,7 @@ class KaryawanViewModel: ObservableObject {
         self.email = ""
         self.badge_id = ""
         self.department = ""
+        self.karyawanUUID = UUID()
     }
     func fetchKaryawan() {
         self.karyawan = InventoryCoreDataManager.shared.fetchKaryawan()

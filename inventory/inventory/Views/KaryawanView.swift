@@ -25,7 +25,6 @@ struct KaryawanView: View {
                     } label: {
                         Image(systemName: "plus")
                             .imageScale(.large)
-//                            .foregroundColor(.red)
                     }
                 }
             }

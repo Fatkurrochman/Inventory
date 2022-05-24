@@ -22,6 +22,10 @@
 		FADDFCE9283CA82D00007104 /* KaryawanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE8283CA82D00007104 /* KaryawanModel.swift */; };
 		FADDFCEB283CA9A800007104 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEA283CA9A800007104 /* TabBarView.swift */; };
 		FADDFCED283CBCF300007104 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEC283CBCF300007104 /* LoginViewModel.swift */; };
+		FADDFCEF283CC25500007104 /* BarangViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEE283CC25500007104 /* BarangViewModel.swift */; };
+		FADDFCF1283CC2ED00007104 /* BarangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF0283CC2ED00007104 /* BarangModel.swift */; };
+		FADDFCF3283CC45400007104 /* BarangCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */; };
+		FADDFCF5283CC57B00007104 /* BarangFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF4283CC57B00007104 /* BarangFormView.swift */; };
 		FAFE575A283A352F004F151D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE5759283A352F004F151D /* LoginView.swift */; };
 		FAFE575D283A368A004F151D /* InventoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE575C283A368A004F151D /* InventoryHelper.swift */; };
 		FAFE576F283A8301004F151D /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE576E283A8301004F151D /* DashboardView.swift */; };
@@ -68,6 +72,10 @@
 		FADDFCE8283CA82D00007104 /* KaryawanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaryawanModel.swift; sourceTree = "<group>"; };
 		FADDFCEA283CA9A800007104 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		FADDFCEC283CBCF300007104 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FADDFCEE283CC25500007104 /* BarangViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangViewModel.swift; sourceTree = "<group>"; };
+		FADDFCF0283CC2ED00007104 /* BarangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangModel.swift; sourceTree = "<group>"; };
+		FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangCoreDataHelper.swift; sourceTree = "<group>"; };
+		FADDFCF4283CC57B00007104 /* BarangFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangFormView.swift; sourceTree = "<group>"; };
 		FAFE5759283A352F004F151D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FAFE575C283A368A004F151D /* InventoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryHelper.swift; sourceTree = "<group>"; };
 		FAFE576E283A8301004F151D /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -169,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				FADDFCE1283CA62E00007104 /* KaryawanViewModel.swift */,
+				FADDFCEE283CC25500007104 /* BarangViewModel.swift */,
 				FADDFCEC283CBCF300007104 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
@@ -178,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				FADDFCE8283CA82D00007104 /* KaryawanModel.swift */,
+				FADDFCF0283CC2ED00007104 /* BarangModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,6 +199,7 @@
 				FAFE576E283A8301004F151D /* DashboardView.swift */,
 				FAFE5776283BFBAA004F151D /* BarangView.swift */,
 				FAFE5770283A85DF004F151D /* ListBarangView.swift */,
+				FADDFCF4283CC57B00007104 /* BarangFormView.swift */,
 				FAFE5774283BFB98004F151D /* KaryawanView.swift */,
 				FAFE5772283BFA03004F151D /* ListKaryawanView.swift */,
 				FAFE5778283BFDA8004F151D /* KaryawanFormView.swift */,
@@ -203,6 +214,7 @@
 				FAFE575C283A368A004F151D /* InventoryHelper.swift */,
 				FADDFCE3283CA7AE00007104 /* InventoryCoreDataHelper.swift */,
 				FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */,
+				FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -342,6 +354,7 @@
 				FADDFCE4283CA7AE00007104 /* InventoryCoreDataHelper.swift in Sources */,
 				FAFE575D283A368A004F151D /* InventoryHelper.swift in Sources */,
 				FAFE5771283A85DF004F151D /* ListBarangView.swift in Sources */,
+				FADDFCF3283CC45400007104 /* BarangCoreDataHelper.swift in Sources */,
 				FAFE5773283BFA03004F151D /* ListKaryawanView.swift in Sources */,
 				FADA7F582838C7B700916152 /* inventory.xcdatamodeld in Sources */,
 				FADA7F552838C7B700916152 /* Persistence.swift in Sources */,
@@ -353,8 +366,11 @@
 				FAFE5777283BFBAA004F151D /* BarangView.swift in Sources */,
 				FAFE5779283BFDA8004F151D /* KaryawanFormView.swift in Sources */,
 				FADDFCE9283CA82D00007104 /* KaryawanModel.swift in Sources */,
+				FADDFCF1283CC2ED00007104 /* BarangModel.swift in Sources */,
+				FADDFCEF283CC25500007104 /* BarangViewModel.swift in Sources */,
 				FADA7F4C2838C7B500916152 /* inventoryApp.swift in Sources */,
 				FADDFCE2283CA62E00007104 /* KaryawanViewModel.swift in Sources */,
+				FADDFCF5283CC57B00007104 /* BarangFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
