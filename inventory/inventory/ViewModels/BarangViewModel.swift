@@ -13,8 +13,8 @@ class BarangViewModel: ObservableObject {
     @Published var barangUUID: UUID = UUID()
     @Published var code: String = ""
     @Published var name: String = ""
-    @Published var qty: Int64 = 0
-    @Published var str_qty: String = ""
+    @Published var barangQty: Int64 = 0
+    @Published var qty: String = ""
     
     @Published var isPresented: Bool = false
     @Published var status: String = ""
@@ -38,8 +38,8 @@ class BarangViewModel: ObservableObject {
     func setDefaultForm() {
         self.name = ""
         self.code = ""
-        self.qty = 0
-        self.str_qty = ""
+        self.barangQty = 0
+        self.qty = ""
         self.barangUUID = UUID()
     }
     func fetchBarang() {
@@ -49,7 +49,7 @@ class BarangViewModel: ObservableObject {
         let barang = Barang(context: InventoryCoreDataManager.shared.viewContext)
         barang.name = self.name
         barang.code = self.code
-        barang.qty = Int64(self.str_qty) ?? 0
+        barang.qty = Int64(self.qty) ?? 0
         barang.barang_uuid = self.barangUUID
         
         InventoryCoreDataManager.shared.save()

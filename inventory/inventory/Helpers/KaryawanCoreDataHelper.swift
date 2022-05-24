@@ -17,7 +17,6 @@ extension InventoryCoreDataManager {
             return []
         }
     }
-    
     func getKaryawanById(id: NSManagedObjectID) -> Karyawan? {
         do {
             return try viewContext.existingObject(with: id) as? Karyawan

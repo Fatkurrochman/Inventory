@@ -16,9 +16,19 @@
         <attribute name="karyawan_uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Peminjaman" representedClassName="Peminjaman" syncable="YES" codeGenerationType="class">
+        <attribute name="end_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="peminjaman_uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="qty" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="start_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="barang_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Barang"/>
+        <relationship name="karyawan_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Karyawan"/>
+    </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
         <element name="Karyawan" positionX="-63" positionY="-9" width="128" height="104"/>
         <element name="Barang" positionX="-54" positionY="36" width="128" height="89"/>
+        <element name="Peminjaman" positionX="-36" positionY="54" width="128" height="134"/>
     </elements>
 </model>

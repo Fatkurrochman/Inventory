@@ -26,6 +26,12 @@
 		FADDFCF1283CC2ED00007104 /* BarangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF0283CC2ED00007104 /* BarangModel.swift */; };
 		FADDFCF3283CC45400007104 /* BarangCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */; };
 		FADDFCF5283CC57B00007104 /* BarangFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF4283CC57B00007104 /* BarangFormView.swift */; };
+		FADDFCF7283CCE1B00007104 /* PeminjamanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF6283CCE1B00007104 /* PeminjamanModel.swift */; };
+		FADDFCF9283CD1AD00007104 /* PeminjamanCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF8283CD1AD00007104 /* PeminjamanCoreDataHelper.swift */; };
+		FADDFCFB283CD24400007104 /* PeminjamanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCFA283CD24400007104 /* PeminjamanViewModel.swift */; };
+		FADDFCFD283CD43E00007104 /* PeminjamanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCFC283CD43E00007104 /* PeminjamanView.swift */; };
+		FADDFCFF283CD8CF00007104 /* ListPeminjamanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCFE283CD8CF00007104 /* ListPeminjamanView.swift */; };
+		FADDFD01283CD8FF00007104 /* PeminjamanFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFD00283CD8FF00007104 /* PeminjamanFormView.swift */; };
 		FAFE575A283A352F004F151D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE5759283A352F004F151D /* LoginView.swift */; };
 		FAFE575D283A368A004F151D /* InventoryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE575C283A368A004F151D /* InventoryHelper.swift */; };
 		FAFE576F283A8301004F151D /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFE576E283A8301004F151D /* DashboardView.swift */; };
@@ -76,6 +82,12 @@
 		FADDFCF0283CC2ED00007104 /* BarangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangModel.swift; sourceTree = "<group>"; };
 		FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangCoreDataHelper.swift; sourceTree = "<group>"; };
 		FADDFCF4283CC57B00007104 /* BarangFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangFormView.swift; sourceTree = "<group>"; };
+		FADDFCF6283CCE1B00007104 /* PeminjamanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanModel.swift; sourceTree = "<group>"; };
+		FADDFCF8283CD1AD00007104 /* PeminjamanCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanCoreDataHelper.swift; sourceTree = "<group>"; };
+		FADDFCFA283CD24400007104 /* PeminjamanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanViewModel.swift; sourceTree = "<group>"; };
+		FADDFCFC283CD43E00007104 /* PeminjamanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanView.swift; sourceTree = "<group>"; };
+		FADDFCFE283CD8CF00007104 /* ListPeminjamanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPeminjamanView.swift; sourceTree = "<group>"; };
+		FADDFD00283CD8FF00007104 /* PeminjamanFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanFormView.swift; sourceTree = "<group>"; };
 		FAFE5759283A352F004F151D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FAFE575C283A368A004F151D /* InventoryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryHelper.swift; sourceTree = "<group>"; };
 		FAFE576E283A8301004F151D /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -179,6 +191,7 @@
 				FADDFCE1283CA62E00007104 /* KaryawanViewModel.swift */,
 				FADDFCEE283CC25500007104 /* BarangViewModel.swift */,
 				FADDFCEC283CBCF300007104 /* LoginViewModel.swift */,
+				FADDFCFA283CD24400007104 /* PeminjamanViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -188,6 +201,7 @@
 			children = (
 				FADDFCE8283CA82D00007104 /* KaryawanModel.swift */,
 				FADDFCF0283CC2ED00007104 /* BarangModel.swift */,
+				FADDFCF6283CCE1B00007104 /* PeminjamanModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,6 +218,9 @@
 				FAFE5772283BFA03004F151D /* ListKaryawanView.swift */,
 				FAFE5778283BFDA8004F151D /* KaryawanFormView.swift */,
 				FADDFCEA283CA9A800007104 /* TabBarView.swift */,
+				FADDFCFC283CD43E00007104 /* PeminjamanView.swift */,
+				FADDFCFE283CD8CF00007104 /* ListPeminjamanView.swift */,
+				FADDFD00283CD8FF00007104 /* PeminjamanFormView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +232,7 @@
 				FADDFCE3283CA7AE00007104 /* InventoryCoreDataHelper.swift */,
 				FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */,
 				FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */,
+				FADDFCF8283CD1AD00007104 /* PeminjamanCoreDataHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -356,20 +374,26 @@
 				FAFE5771283A85DF004F151D /* ListBarangView.swift in Sources */,
 				FADDFCF3283CC45400007104 /* BarangCoreDataHelper.swift in Sources */,
 				FAFE5773283BFA03004F151D /* ListKaryawanView.swift in Sources */,
+				FADDFCF7283CCE1B00007104 /* PeminjamanModel.swift in Sources */,
 				FADA7F582838C7B700916152 /* inventory.xcdatamodeld in Sources */,
 				FADA7F552838C7B700916152 /* Persistence.swift in Sources */,
+				FADDFCFD283CD43E00007104 /* PeminjamanView.swift in Sources */,
 				FADDFCED283CBCF300007104 /* LoginViewModel.swift in Sources */,
+				FADDFCFF283CD8CF00007104 /* ListPeminjamanView.swift in Sources */,
 				FAFE576F283A8301004F151D /* DashboardView.swift in Sources */,
 				FADA7F4E2838C7B500916152 /* ContentView.swift in Sources */,
 				FAFE575A283A352F004F151D /* LoginView.swift in Sources */,
 				FADDFCE6283CA7EA00007104 /* KaryawanCoreDataHelper.swift in Sources */,
 				FAFE5777283BFBAA004F151D /* BarangView.swift in Sources */,
+				FADDFCFB283CD24400007104 /* PeminjamanViewModel.swift in Sources */,
 				FAFE5779283BFDA8004F151D /* KaryawanFormView.swift in Sources */,
 				FADDFCE9283CA82D00007104 /* KaryawanModel.swift in Sources */,
 				FADDFCF1283CC2ED00007104 /* BarangModel.swift in Sources */,
 				FADDFCEF283CC25500007104 /* BarangViewModel.swift in Sources */,
+				FADDFCF9283CD1AD00007104 /* PeminjamanCoreDataHelper.swift in Sources */,
 				FADA7F4C2838C7B500916152 /* inventoryApp.swift in Sources */,
 				FADDFCE2283CA62E00007104 /* KaryawanViewModel.swift in Sources */,
+				FADDFD01283CD8FF00007104 /* PeminjamanFormView.swift in Sources */,
 				FADDFCF5283CC57B00007104 /* BarangFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

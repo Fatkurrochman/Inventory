@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @State private var selectedTab = 1
+    @State private var selectedTab = 3
     @ObservedObject var barangVM: BarangViewModel = BarangViewModel()
     @ObservedObject var karyawanVM: KaryawanViewModel = KaryawanViewModel()
+    @ObservedObject var peminjamanVM: PeminjamanViewModel = PeminjamanViewModel()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -22,6 +23,10 @@ struct TabBarView: View {
 //                Image("person.3.fill")
                 Text("Karyawan")
             }.tag(2).environmentObject(karyawanVM)
+            PeminjamanView().tabItem {
+//                Image("person.3.fill")
+                Text("Peminjaman")
+            }.tag(3).environmentObject(peminjamanVM)
         }
             
     }

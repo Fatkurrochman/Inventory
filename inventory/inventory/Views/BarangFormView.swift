@@ -32,7 +32,7 @@ struct BarangFormView: View {
                             .font(.system(.callout, design: .rounded))
                         TextField("Nama Barang", text: $barangVM.name)
                             .font(.system(.callout, design: .rounded))
-                        TextField("Jumlah Barang", text: $barangVM.str_qty)
+                        TextField("Jumlah Barang", text: $barangVM.qty)
                             .font(.system(.callout, design: .rounded))
                 }
             }
