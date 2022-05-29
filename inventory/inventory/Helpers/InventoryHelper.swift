@@ -13,3 +13,19 @@ struct InventoryHelper {
     static var buttonDashboard = Color("ButtonDashboard")
     static var groupColor = Color("GroupColor")
 }
+
+import SwiftUI
+
+extension UserDefaults{
+    func setAuthenticate(value: Bool) {
+        set(value, forKey: UserDefaultsKeys.isAuthenticate.rawValue)
+    }
+    
+    func getAuthenticate() -> Bool {
+        return UserDefaults.standard.object(forKey: UserDefaultsKeys.isAuthenticate.rawValue) as? Bool ?? false
+    }
+}
+
+enum UserDefaultsKeys : String {
+    case isAuthenticate
+}

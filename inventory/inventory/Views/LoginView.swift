@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
-    @ObservedObject var loginVM = LoginViewModel()
+    @EnvironmentObject var loginVM: LoginViewModel
+    
     var body: some View {
         VStack {
             Spacer()
             InventoryHelper.companyLogo
             Spacer()
             HStack {
-                TextField("Username", text: $loginVM.password)
+                TextField("Username", text: $loginVM.username)
                     .padding()
                     .font(.system(size: 18, design: .rounded))
                     .overlay(
@@ -28,7 +30,7 @@ struct LoginView: View {
             .padding(.horizontal)
             
             HStack {
-                TextField("Password", text: $loginVM.password)
+                SecureField("Password", text: $loginVM.password)
                     .padding()
                     .font(.system(size: 18, design: .rounded))
                     .overlay(
@@ -43,7 +45,7 @@ struct LoginView: View {
             Spacer()
             Spacer()
             Button {
-                //Action
+                loginVM.authenticate()
             } label: {
                 HStack {
                     Spacer()

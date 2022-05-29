@@ -11,7 +11,7 @@ struct KaryawanView: View {
     @EnvironmentObject var karyawanVM: KaryawanViewModel
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
                 ListKaryawanView(karyawanVM: karyawanVM)
             }
@@ -31,7 +31,7 @@ struct KaryawanView: View {
             .sheet(isPresented: $karyawanVM.isPresented) {
                 KaryawanFormView(karyawanVM: karyawanVM, isPresented: $karyawanVM.isPresented)
             }
-        }
+//        }
     }
 }
 

@@ -8,45 +8,107 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @EnvironmentObject var loginVM: LoginViewModel
+    
+    @ObservedObject var barangVM: BarangViewModel = BarangViewModel()
+    @ObservedObject var karyawanVM: KaryawanViewModel = KaryawanViewModel()
+    @ObservedObject var peminjamanVM: PeminjamanViewModel = PeminjamanViewModel()
+    
+    @State var isBarang: Bool = false
+    @State var isKaryawan: Bool = false
+    @State var isPeminjaman: Bool = false
+    
     var body: some View {
-        VStack {
-            HStack {
-                Image("Barang")
-                    .frame(width: 92, height: 75)
+        NavigationView {
+            VStack {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Hello, Admin")
+                        Text("Welcome Back!")
+                    }
+                    Spacer()
+                    HStack {
+                        Image(systemName: "arrow.left.circle.fill")
+                        Text("Logout")
+                            .font(.footnote)
+                    }
                     .padding()
-                Text("Barang")
-                    .font(.title)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30.0)
+                            .foregroundColor(InventoryHelper.buttonDashboard)
+                    ).onTapGesture {
+                        loginVM.logout()
+                    }
+                }.padding()
+                
+                
+                
+                Button {
+                    isBarang = true
+                } label: {
+                    NavigationLink(destination: BarangView().environmentObject(barangVM), isActive: $isBarang) {
+                        HStack {
+                            Image(systemName: "shippingbox")
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .padding()
+                            Text("Barang")
+                                .font(.title)
+                            Spacer()
+                        }.background(
+                            RoundedRectangle(cornerRadius: 30.0)
+                                .foregroundColor(InventoryHelper.buttonDashboard)
+                        )
+                        .padding()
+                     }
+                    .contentShape(Rectangle())
+                }
+                
+                Button {
+                    isKaryawan = true
+                } label: {
+                    NavigationLink(destination: KaryawanView().environmentObject(karyawanVM), isActive: $isKaryawan) {
+                        HStack {
+                            Image(systemName: "person.3")
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .padding()
+                            Text("Karyawan")
+                                .font(.title)
+                            Spacer()
+                        }.background(
+                            RoundedRectangle(cornerRadius: 30.0)
+                                .foregroundColor(InventoryHelper.buttonDashboard)
+                        ).padding()
+                     }
+                    .contentShape(Rectangle())
+                }
+                
+                Button {
+                    isPeminjaman = true
+                } label: {
+                    NavigationLink(destination: PeminjamanView().environmentObject(peminjamanVM), isActive: $isPeminjaman) {
+                        HStack {
+                            Image(systemName: "bag")
+                                .resizable()
+                                .frame(width: 50, height: 50, alignment: .center)
+                                .padding()
+                            Text("Peminjaman")
+                                .font(.title)
+                            Spacer()
+                        }.background(
+                            RoundedRectangle(cornerRadius: 30.0)
+                                .foregroundColor(InventoryHelper.buttonDashboard)
+                        ).padding()
+                     }
+                    .contentShape(Rectangle())
+                }
+                
                 Spacer()
-            }.background(
-                RoundedRectangle(cornerRadius: 30.0)
-                    .foregroundColor(InventoryHelper.buttonDashboard)
-            )
-            .padding()
-            HStack {
-                Image("Karyawan")
-                    .frame(width: 81, height: 81)
-                    .padding()
-                Text("Karyawan")
-                    .font(.title)
-                Spacer()
-            }.background(
-                RoundedRectangle(cornerRadius: 30.0)
-                    .foregroundColor(InventoryHelper.buttonDashboard)
-            ).padding()
-            
-            HStack {
-                Image("Peminjaman")
-                    .frame(width: 100, height: 100)
-                    .padding()
-                Text("Peminjaman")
-                    .font(.title)
-                Spacer()
-            }.background(
-                RoundedRectangle(cornerRadius: 30.0)
-                    .foregroundColor(InventoryHelper.buttonDashboard)
-            ).padding()
+            }
+            .navigationTitle("Dashboard")
+            .navigationBarHidden(true)
         }
-        .padding()
     }
 }
 

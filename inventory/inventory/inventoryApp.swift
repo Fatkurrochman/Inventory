@@ -6,17 +6,26 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct inventoryApp: App {
-//    let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) private var scenePhase
+    @ObservedObject var loginVM: LoginViewModel = LoginViewModel()
+    
+    init() {
+        FirebaseApp.configure()
+    }
 
     var body: some Scene {
         WindowGroup {
-            TabBarView()
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            if loginVM.isAuthenticate == false {
+                LoginView()
+                    .environmentObject(loginVM)
+            } else {
+                DashboardView()
+                    .environmentObject(loginVM)
+            }
         }.onChange(of: scenePhase) { phase in
             switch phase {
                 case .active:
@@ -25,7 +34,6 @@ struct inventoryApp: App {
                     print("inactive")
                 case .background:
                     print("background")
-//                    persistenceController.saveData()
                 @unknown default:
                     print("unknown")
             }
