@@ -16,7 +16,9 @@ struct ListKaryawanContentView: View {
                 Text(karyawan.name)
                     .font(.system(size: 15, design: .rounded))
                 Text(karyawan.badge_id + " - " + karyawan.department)
-                .font(.system(size: 13, design: .rounded))
+                    .font(.system(size: 13, design: .rounded))
+                Text(karyawan.email)
+                    .font(.system(size: 13, design: .rounded))
 //                    Text("Departemen")
 //                        .font(.system(size: 13, design: .rounded))
 //                        .foregroundColor(Color.init(.systemGray))
@@ -37,6 +39,20 @@ struct ListKaryawanView: View {
                 VStack(spacing: 10) {
                     ListKaryawanContentView(
                         karyawan: key)
+                }
+                .contextMenu {
+                    Button {
+                        karyawanVM.fillForm(model: key)
+                    } label: {
+                        Label("Ubah Karyawan", systemImage: "square.and.pencil")
+                    }
+                    Divider()
+                    Button {
+                        karyawanVM.deleteById(model: key)
+                    } label: {
+                        Text("Hapus")
+                        Image(systemName: "trash")
+                    }
                 }
                 .padding(.horizontal)
             }

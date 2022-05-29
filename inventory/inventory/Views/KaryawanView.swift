@@ -11,27 +11,25 @@ struct KaryawanView: View {
     @EnvironmentObject var karyawanVM: KaryawanViewModel
     
     var body: some View {
-//        NavigationView {
-            VStack {
-                ListKaryawanView(karyawanVM: karyawanVM)
-            }
-            .navigationTitle("Karyawan")
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        karyawanVM.setDefaultForm()
-                        karyawanVM.status = "create"
-                        karyawanVM.isPresented.toggle()
-                    } label: {
-                        Image(systemName: "plus")
-                            .imageScale(.large)
-                    }
+        VStack {
+            ListKaryawanView(karyawanVM: karyawanVM)
+        }
+        .navigationTitle("Karyawan")
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    karyawanVM.setDefaultForm()
+                    karyawanVM.status = "create"
+                    karyawanVM.isPresented.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                        .imageScale(.large)
                 }
             }
-            .sheet(isPresented: $karyawanVM.isPresented) {
-                KaryawanFormView(karyawanVM: karyawanVM, isPresented: $karyawanVM.isPresented)
-            }
-//        }
+        }
+        .sheet(isPresented: $karyawanVM.isPresented) {
+            KaryawanFormView(karyawanVM: karyawanVM, isPresented: $karyawanVM.isPresented)
+        }
     }
 }
 

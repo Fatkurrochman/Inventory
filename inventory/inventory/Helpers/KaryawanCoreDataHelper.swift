@@ -17,6 +17,20 @@ extension InventoryCoreDataManager {
             return []
         }
     }
+    func getKaryawanByBadge(badge: String) -> Karyawan? {
+        let request: NSFetchRequest<Karyawan> = Karyawan.fetchRequest()
+        do {
+            return try viewContext.fetch(request).filter({ karyawan in
+                if karyawan.badge_id == badge {
+                    return true
+                } else {
+                    return false
+                }
+            }).first
+        } catch {
+            return nil
+        }
+    }
     func getKaryawanById(id: NSManagedObjectID) -> Karyawan? {
         do {
             return try viewContext.existingObject(with: id) as? Karyawan

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var selectedTab = 3
+    
+    @EnvironmentObject var loginVM: LoginViewModel
+    
     @ObservedObject var barangVM: BarangViewModel = BarangViewModel()
     @ObservedObject var karyawanVM: KaryawanViewModel = KaryawanViewModel()
     @ObservedObject var peminjamanVM: PeminjamanViewModel = PeminjamanViewModel()

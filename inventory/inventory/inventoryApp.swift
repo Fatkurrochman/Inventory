@@ -24,6 +24,7 @@ struct inventoryApp: App {
                     .environmentObject(loginVM)
             } else {
                 DashboardView()
+//                TabBarView()
                     .environmentObject(loginVM)
             }
         }.onChange(of: scenePhase) { phase in

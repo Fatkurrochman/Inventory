@@ -24,7 +24,9 @@ struct DashboardView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Hello, Admin")
+                            .font(.title)
                         Text("Welcome Back!")
+                            .font(.title3)
                     }
                     Spacer()
                     HStack {
@@ -39,21 +41,23 @@ struct DashboardView: View {
                     ).onTapGesture {
                         loginVM.logout()
                     }
-                }.padding()
-                
-                
+                }
+                .padding()
                 
                 Button {
                     isBarang = true
                 } label: {
-                    NavigationLink(destination: BarangView().environmentObject(barangVM), isActive: $isBarang) {
+                    NavigationLink(
+                        destination: BarangView().environmentObject(barangVM), isActive: $isBarang) {
                         HStack {
                             Image(systemName: "shippingbox")
                                 .resizable()
                                 .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.black)
                                 .padding()
                             Text("Barang")
                                 .font(.title)
+                                .foregroundColor(.black)
                             Spacer()
                         }.background(
                             RoundedRectangle(cornerRadius: 30.0)
@@ -67,14 +71,17 @@ struct DashboardView: View {
                 Button {
                     isKaryawan = true
                 } label: {
-                    NavigationLink(destination: KaryawanView().environmentObject(karyawanVM), isActive: $isKaryawan) {
+                    NavigationLink(
+                        destination: KaryawanView().environmentObject(karyawanVM), isActive: $isKaryawan) {
                         HStack {
                             Image(systemName: "person.3")
                                 .resizable()
                                 .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.black)
                                 .padding()
                             Text("Karyawan")
                                 .font(.title)
+                                .foregroundColor(.black)
                             Spacer()
                         }.background(
                             RoundedRectangle(cornerRadius: 30.0)
@@ -87,14 +94,17 @@ struct DashboardView: View {
                 Button {
                     isPeminjaman = true
                 } label: {
-                    NavigationLink(destination: PeminjamanView().environmentObject(peminjamanVM), isActive: $isPeminjaman) {
+                    NavigationLink(
+                        destination: PeminjamanView().environmentObject(peminjamanVM), isActive: $isPeminjaman) {
                         HStack {
                             Image(systemName: "bag")
                                 .resizable()
                                 .frame(width: 50, height: 50, alignment: .center)
+                                .foregroundColor(.black)
                                 .padding()
                             Text("Peminjaman")
                                 .font(.title)
+                                .foregroundColor(.black)
                             Spacer()
                         }.background(
                             RoundedRectangle(cornerRadius: 30.0)

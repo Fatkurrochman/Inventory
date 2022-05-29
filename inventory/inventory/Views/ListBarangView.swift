@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct ListBarangContenntView: View {
+struct ListBarangContentView: View {
     var barang: BarangModel
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
@@ -16,9 +17,6 @@ struct ListBarangContenntView: View {
                     .font(.system(size: 15, design: .rounded))
                 Text(barang.code)
                 .font(.system(size: 13, design: .rounded))
-//                    Text("Departemen")
-//                        .font(.system(size: 13, design: .rounded))
-//                        .foregroundColor(Color.init(.systemGray))
             }
             Spacer()
             Text(String(barang.qty))
@@ -36,8 +34,22 @@ struct ListBarangView: View {
             ForEach (barangVM.filterBarang(), id:\.id) {
                 key in
                 VStack(spacing: 10) {
-                    ListBarangContenntView(
+                    ListBarangContentView(
                         barang: key)
+                }
+                .contextMenu {
+                    Button {
+                        barangVM.fillForm(model: key)
+                    } label: {
+                        Label("Ubah Barang", systemImage: "square.and.pencil")
+                    }
+                    Divider()
+                    Button {
+                        barangVM.deleteById(model: key)
+                    } label: {
+                        Text("Hapus")
+                        Image(systemName: "trash")
+                    }
                 }
                 .padding(.horizontal)
             }

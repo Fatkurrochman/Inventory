@@ -42,6 +42,16 @@ class BarangViewModel: ObservableObject {
         self.qty = ""
         self.barangUUID = UUID()
     }
+    func fillForm(model: BarangModel) {
+        self.id = model.id
+        self.name = model.name
+        self.status = "edit"
+        self.barangUUID = model.barangUUID
+        self.code = model.code
+        self.qty = String(model.qty)
+        self.barangQty = model.qty
+        self.isPresented = true
+    }
     func fetchBarang() {
         self.barang = InventoryCoreDataManager.shared.fetchBarang()
     }
@@ -56,11 +66,21 @@ class BarangViewModel: ObservableObject {
         fetchBarang()
     }
     func edit() {
-        let barang = InventoryCoreDataManager.shared.getKaryawanById(id: self.id)
+        let barang = InventoryCoreDataManager.shared.getBarangById(id: self.id)
         if let barang = barang {
             barang.name = self.name
+            barang.code = self.code
+            barang.qty = Int64(self.qty) ?? 0
+            InventoryCoreDataManager.shared.save()
         }
-        InventoryCoreDataManager.shared.save()
+        fetchBarang()
+    }
+    func deleteById(model: BarangModel) {
+        let barang = InventoryCoreDataManager.shared.getBarangById(id: model.id)
+        if let barang = barang {
+            InventoryCoreDataManager.shared.viewContext.delete(barang)
+            InventoryCoreDataManager.shared.save()
+        }
         fetchBarang()
     }
 }

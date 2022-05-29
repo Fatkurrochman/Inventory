@@ -40,7 +40,18 @@ class KaryawanViewModel: ObservableObject {
         self.email = ""
         self.badge_id = ""
         self.department = ""
+        self.email = ""
         self.karyawanUUID = UUID()
+    }
+    func fillForm(model: KaryawanModel) {
+        self.id = model.id
+        self.name = model.name
+        self.status = "edit"
+        self.badge_id = model.badge_id
+        self.department = model.department
+        self.karyawanUUID = model.karyawanUUID
+        self.email = model.email
+        self.isPresented = true
     }
     func fetchKaryawan() {
         self.karyawan = InventoryCoreDataManager.shared.fetchKaryawan()
@@ -59,8 +70,19 @@ class KaryawanViewModel: ObservableObject {
         let karyawan = InventoryCoreDataManager.shared.getKaryawanById(id: self.id)
         if let karyawan = karyawan {
             karyawan.name = self.name
+            karyawan.email = self.email
+            karyawan.badge_id = self.badge_id
+            karyawan.department = self.department
         }
         InventoryCoreDataManager.shared.save()
+        fetchKaryawan()
+    }
+    func deleteById(model: KaryawanModel) {
+        let karyawan = InventoryCoreDataManager.shared.getKaryawanById(id: model.id)
+        if let karyawan = karyawan {
+            InventoryCoreDataManager.shared.viewContext.delete(karyawan)
+            InventoryCoreDataManager.shared.save()
+        }
         fetchKaryawan()
     }
 }
