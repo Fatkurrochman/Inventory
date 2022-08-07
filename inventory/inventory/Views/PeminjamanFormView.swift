@@ -67,8 +67,8 @@ struct PeminjamanFormView: View {
                         Picker(selection: $peminjamanVM.barangId, label: Text(peminjamanVM.barangName)
                                 .font(.system(.callout, design: .rounded))) {
                                     ForEach(peminjamanVM.barang, id:\.id) { key in
-                                        ListBarangContentView(barang: key)
-//                                    .contentShape(Rectangle())
+                                        PeminjamanListBarangContentView(barang: key)
+                                    .contentShape(Rectangle())
                                     .onTapGesture {
                                         barangOnTap(barang: key)
                                     }
@@ -79,7 +79,7 @@ struct PeminjamanFormView: View {
                         TextField("Jumlah", text: $peminjamanVM.qty)
                             .font(.system(.callout, design: .rounded))
                 }
-                Section(header: Text("Detail Tanggal Peminjamann")
+                Section(header: Text("Detail Tanggal Peminjaman")
                     .font(.system(.caption, design: .rounded))) {
                         DatePicker("Mulai", selection: (
                             $peminjamanVM.startDate

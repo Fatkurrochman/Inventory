@@ -57,6 +57,26 @@ struct ListBarangView: View {
     }
 }
 
+struct PeminjamanListBarangContentView: View {
+    var barang: BarangModel
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(barang.name)
+                    .font(.system(size: 15, design: .rounded))
+                Text(barang.code)
+                .font(.system(size: 13, design: .rounded))
+            }
+            Spacer()
+            Text(String(barang.qty))
+                .font(.system(size: 15, design: .rounded))
+        }
+        .padding()
+//        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.groupColor))
+    }
+}
+
 //struct ListBarangView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ListBarangView()

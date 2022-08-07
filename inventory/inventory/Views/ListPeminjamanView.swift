@@ -41,7 +41,12 @@ struct ListPeminjamanView: View {
                     Button {
                         peminjamanVM.fillForm(model: key)
                     } label: {
-                        Label("Ubah Peminjamann", systemImage: "square.and.pencil")
+                        Label("Ubah Peminjaman", systemImage: "square.and.pencil")
+                    }
+                    Button {
+                        peminjamanVM.fillForm(model: key)
+                    } label: {
+                        Label("Selesaikan Peminjaman", systemImage: "checkmark.circle ")
                     }
                     Divider()
                     Button {
