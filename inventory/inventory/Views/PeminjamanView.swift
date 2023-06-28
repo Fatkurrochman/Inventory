@@ -11,7 +11,7 @@ struct PeminjamanView: View {
     @EnvironmentObject var peminjamanVM: PeminjamanViewModel
     
     var body: some View {
-//        NavigationView {
+
             VStack {
                 ListPeminjamanView(peminjamanVM: peminjamanVM)
             }
@@ -31,12 +31,11 @@ struct PeminjamanView: View {
             .sheet(isPresented: $peminjamanVM.isPresented) {
                 PeminjamanFormView(isPresented: $peminjamanVM.isPresented, peminjamanVM: peminjamanVM)
             }
-//        }
     }
 }
 
 struct PeminjamanView_Previews: PreviewProvider {
     static var previews: some View {
-        PeminjamanView()
+        PeminjamanView().environmentObject(PeminjamanViewModel())
     }
 }

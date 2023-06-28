@@ -19,15 +19,12 @@ struct TabBarView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             BarangView().tabItem {
-//                Image("cube.box")
                 Text("Barang")
             }.tag(1).environmentObject(barangVM)
             KaryawanView().tabItem {
-//                Image("person.3.fill")
                 Text("Karyawan")
             }.tag(2).environmentObject(karyawanVM)
             PeminjamanView().tabItem {
-//                Image("person.3.fill")
                 Text("Peminjaman")
             }.tag(3).environmentObject(peminjamanVM)
         }

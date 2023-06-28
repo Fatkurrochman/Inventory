@@ -30,11 +30,14 @@ struct KaryawanView: View {
         .sheet(isPresented: $karyawanVM.isPresented) {
             KaryawanFormView(karyawanVM: karyawanVM, isPresented: $karyawanVM.isPresented)
         }
+        .onAppear {
+            karyawanVM.fetchKaryawan()
+        }
     }
 }
 
 struct KaryawanView_Previews: PreviewProvider {
     static var previews: some View {
-        KaryawanView()
+        KaryawanView().environmentObject(KaryawanViewModel())
     }
 }

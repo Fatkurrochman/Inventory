@@ -2,30 +2,28 @@
 //  BarangFormView.swift
 //  inventory
 //
-//  Created by Rinaldi on 24/05/22.
+//  Created by Rasyid Khaikal on 24/05/22.
 //
 
 import SwiftUI
 
-struct BarangFormView: View {
-    @ObservedObject var barangVM: BarangViewModel
+struct AddUserFormView: View {
+    @ObservedObject var userVM: UserViewModel
     @Binding var isPresented: Bool
     
     func actionDone() {
 
-        if barangVM.status == "edit" {
-            barangVM.edit()
+        userVM.create()
             closeModal()
-        } else {
-            barangVM.create()
-            closeModal()
-        }
+        
       
         
     }
     func closeModal(){
-        if(!barangVM.isErrorForm && !barangVM.isEmptyForm){
+        if(!userVM.isErrorForm && !userVM.isEmptyForm && !userVM.isPasswordMatch){
             isPresented.toggle()
+        
+            print("masuk1")
         }
       
     }
@@ -36,30 +34,36 @@ struct BarangFormView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Data Barang")
+                Section(header: Text("Data Pengguna")
                     .font(.system(.caption, design: .rounded))) {
-                        TextField("Kode Barang", text: $barangVM.code)
+                        TextField("Username", text: $userVM.username)
                             .font(.system(.callout, design: .rounded))
-                        TextField("Nama Barang", text: $barangVM.name)
+                        SecureField("Password", text: $userVM.password)
                             .font(.system(.callout, design: .rounded))
-                        TextField("Jumlah Barang", text: $barangVM.qty)
+                        SecureField("Confirm Password", text: $userVM.confirmPassword)
                             .font(.system(.callout, design: .rounded))
-                        if(barangVM.isEmptyForm){
-                            Text("Mohon untuk mengisi semua data barang terlebih dahulu")
+                        if(userVM.isEmptyForm){
+                            Text("Mohon untuk mengisi semua data Pengguna terlebih dahulu")
                                 .foregroundColor(.red)
                                 .font(.system(size: 14))
                         }
-                        if(barangVM.isErrorForm){
-                            Text("Gagal Menambahkan Barang")
+                        if(userVM.isErrorForm){
+                            Text("Gagal Menambahkan Pengguna")
                                 .foregroundColor(.red)
                                 .font(.system(size: 14))
                         }
+                        if(userVM.isPasswordMatch){
+                            Text("Password Tidak Sama")
+                                .foregroundColor(.red)
+                                .font(.system(size: 14))
+                        }
+                        
                         
                        
                 }
             }
           
-            .navigationBarTitle(barangVM.status == "edit" ? "Edit Barang" : "Tambah Barang", displayMode: .inline)
+            .navigationBarTitle("Tambah Pengguna", displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: actionCancel, label: {
                         Text("Cancel")

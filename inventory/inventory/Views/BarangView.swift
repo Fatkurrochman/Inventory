@@ -30,11 +30,16 @@ struct BarangView: View {
         .sheet(isPresented: $barangVM.isPresented) {
             BarangFormView(barangVM: barangVM, isPresented: $barangVM.isPresented)
         }
+        .onAppear {
+            barangVM.fetchBarang()
+               }
+
     }
 }
 
 struct BarangView_Previews: PreviewProvider {
     static var previews: some View {
         BarangView()
+            .environmentObject(BarangViewModel())
     }
 }

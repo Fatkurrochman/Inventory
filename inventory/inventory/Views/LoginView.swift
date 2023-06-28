@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
-import Firebase
+
 
 struct LoginView: View {
     @EnvironmentObject var loginVM: LoginViewModel
-    
+    //@EnvironmentObject var network: Network
+
     var body: some View {
         VStack {
             Spacer()
@@ -28,7 +29,7 @@ struct LoginView: View {
             }
             .frame(height: 67, alignment: .center)
             .padding(.horizontal)
-            
+
             HStack {
                 SecureField("Password", text: $loginVM.password)
                     .padding()
@@ -41,7 +42,19 @@ struct LoginView: View {
             }
             .frame(height: 67, alignment: .center)
             .padding(.horizontal)
-            
+            VStack {
+                if(loginVM.isEmpty){
+                    Text("Username dan Password tidak boleh kosong!")
+                        .foregroundColor(.red)
+                        .font(.system(size: 14))
+                }
+                if(loginVM.isErrorLogin){
+                    Text("Login Gagal")
+                        .foregroundColor(.red)
+                        .font(.system(size: 14))
+                }
+            }
+           
             Spacer()
             Spacer()
             Button {
@@ -68,5 +81,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(LoginViewModel())
     }
 }

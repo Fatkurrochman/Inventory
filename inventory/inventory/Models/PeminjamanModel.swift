@@ -8,32 +8,30 @@
 import Foundation
 import CoreData
 
-struct PeminjamanModel {
-    let peminjaman: Peminjaman
-    
-    var id: NSManagedObjectID {
-        return peminjaman.objectID
-    }
-    var peminjamanUUID: UUID {
-        return peminjaman.peminjaman_uuid ?? UUID()
-    }
-    var peminjamanStatus: String {
-        return peminjaman.status ?? ""
-    }
-    var startDate: Date {
-        return peminjaman.start_date ?? Date()
-    }
-    var endDate: Date {
-        return peminjaman.end_date ?? Date()
-    }
-    var peminjamanQty: Int64 {
-        return peminjaman.qty
-    }
-    
-    var karyawanId: Karyawan {
-        return peminjaman.karyawan_id ?? Karyawan()
-    }
-    var barangId: Barang {
-        return peminjaman.barang_id ?? Barang()
+struct PeminjamanModel: Identifiable, Decodable  {
+
+    let id: Int
+    let product_id: Int
+    let employee_id: Int
+    let qty: Int
+    let start_date: String
+    let end_date: String
+    let status: String
+    let is_active: Int
+}
+
+extension PeminjamanModel {
+    var formattedStartDate: Date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-d HH:mm:ss"
+            return formatter.date(from: start_date) ?? Date()
+        }
+    var formattedEndDate: Date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-d HH:mm:ss"
+            return formatter.date(from: end_date) ?? Date()
+        }
+    var statusFormatted: String {
+        return status
     }
 }

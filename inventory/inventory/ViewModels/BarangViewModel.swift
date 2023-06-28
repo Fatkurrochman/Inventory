@@ -9,78 +9,150 @@ import Foundation
 import CoreData
 
 class BarangViewModel: ObservableObject {
-    @Published var id: NSManagedObjectID = NSManagedObjectID()
-    @Published var barangUUID: UUID = UUID()
+    @Published var id: Int = Int()
     @Published var code: String = ""
     @Published var name: String = ""
     @Published var barangQty: Int64 = 0
     @Published var qty: String = ""
-    
     @Published var isPresented: Bool = false
     @Published var status: String = ""
-    @Published var barang: [BarangModel] = []
+    @Published var barang: [ProductModel] = []
+    @Published var productIdSelected: String = ""
+    @Published var isEmptyForm: Bool = false
+    @Published var isErrorForm: Bool = false
+    @Published var showingAlertDelete = false
+    
+    let URLHelpers = URLHelper()
     
     init() {
         setDefaultForm()
         fetchBarang()
     }
     
-    func filterBarang() -> [BarangModel] {
-        return barang.filter { barang in
-            if barang.code != "" {
-                return true
-            }
-            else {
-                return false
-            }
-        }
+    func openAlert(model:ProductModel){
+        showingAlertDelete = true
+        self.productIdSelected = String(model.id)
+        
     }
+
     func setDefaultForm() {
         self.name = ""
         self.code = ""
         self.barangQty = 0
         self.qty = ""
-        self.barangUUID = UUID()
     }
-    func fillForm(model: BarangModel) {
+    
+    func fillForm(model: ProductModel) {
         self.id = model.id
         self.name = model.name
         self.status = "edit"
-        self.barangUUID = model.barangUUID
         self.code = model.code
         self.qty = String(model.qty)
-        self.barangQty = model.qty
+        self.barangQty = Int64(model.qty)
         self.isPresented = true
     }
+    
     func fetchBarang() {
-        self.barang = InventoryCoreDataManager.shared.fetchBarang()
+        let request = URLHelpers.urlRequest(urlPath: "/product", method: "GET", useAuthorization: true)
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Request error: ", error)
+                return
+            }
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode == 200 {
+                guard let data = data else { return }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedProduct = try JSONDecoder().decode([ProductModel].self, from: data)
+                     
+                        self.barang = decodedProduct
+                    } catch let error {
+                        print("Error decoding: ", error)
+                    }
+                }
+            }
+        }
+        dataTask.resume()
     }
+    
     func create() {
-        let barang = Barang(context: InventoryCoreDataManager.shared.viewContext)
-        barang.name = self.name
-        barang.code = self.code
-        barang.qty = Int64(self.qty) ?? 0
-        barang.barang_uuid = self.barangUUID
-        
-        InventoryCoreDataManager.shared.save()
-        fetchBarang()
+        if (self.name.isEmpty || self.code.isEmpty || self.qty.isEmpty) {
+            self.isEmptyForm = true
+        } else {
+            self.isEmptyForm = false
+            let body : [String:String] = [
+                "name": self.name,
+                "code": self.code,
+                "qty": "\(self.qty)",
+            ]
+            guard let finalBody = try? JSONEncoder().encode(body) else { return }
+            var request = URLHelpers.urlRequest(urlPath: "/product", method: "POST", useAuthorization: true)
+            request.httpBody = finalBody
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let response = response as? HTTPURLResponse else { return }
+                if response.statusCode == 201 {
+                    DispatchQueue.main.async {
+                        self.isErrorForm = false
+                        self.fetchBarang()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.isErrorForm = true
+                    }
+                }
+            }.resume()
+        }
     }
+    
     func edit() {
-        let barang = InventoryCoreDataManager.shared.getBarangById(id: self.id)
-        if let barang = barang {
-            barang.name = self.name
-            barang.code = self.code
-            barang.qty = Int64(self.qty) ?? 0
-            InventoryCoreDataManager.shared.save()
+        if (self.name.isEmpty || self.code.isEmpty || self.qty.isEmpty) {
+            self.isEmptyForm = true
+        } else {
+            self.isEmptyForm = false
+            let body : [String:String] = [
+                "name": self.name,
+                "code": self.code,
+                "qty": "\(self.qty)",
+            ]
+            guard let finalBody = try? JSONEncoder().encode(body) else { return }
+            var request = URLHelpers.urlRequest(urlPath: "/product/\(self.id)", method: "PUT", useAuthorization: true)
+            request.httpBody = finalBody
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Request error: ", error)
+                    return
+                }
+                guard let response = response as? HTTPURLResponse else { return }
+                if response.statusCode == 200 {
+                    DispatchQueue.main.async {
+                        self.isErrorForm = false
+                        self.fetchBarang()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.isErrorForm = true
+                    }
+                }
+            }.resume()
         }
-        fetchBarang()
     }
-    func deleteById(model: BarangModel) {
-        let barang = InventoryCoreDataManager.shared.getBarangById(id: model.id)
-        if let barang = barang {
-            InventoryCoreDataManager.shared.viewContext.delete(barang)
-            InventoryCoreDataManager.shared.save()
-        }
-        fetchBarang()
+    
+    func deleteById() {
+        let request = URLHelpers.urlRequest(urlPath: "/product/\(self.productIdSelected)", method: "DELETE", useAuthorization: true)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Request error: ", error)
+                return
+            }
+            guard let response = response as? HTTPURLResponse else { return }
+            if response.statusCode == 200 {
+                DispatchQueue.main.async {
+                    self.fetchBarang()
+                }
+            } else {
+                print("You can't delete this record")
+            }
+        }.resume()
     }
 }

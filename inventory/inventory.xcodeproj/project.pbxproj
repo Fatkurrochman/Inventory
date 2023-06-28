@@ -7,30 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA19A2A3284383E000EC4D40 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = FA19A2A2284383E000EC4D40 /* FirebaseAnalytics */; };
+		A239F46F294361D90079C087 /* DepartemenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A239F46E294361D90079C087 /* DepartemenModel.swift */; };
+		A2CF87C02935B72A00BD4040 /* network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF87BF2935B72A00BD4040 /* network.swift */; };
+		A2CF87C22935B7A800BD4040 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2CF87C12935B7A800BD4040 /* User.swift */; };
+		A2E183E7294CBB0B009B351A /* AddUserFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E183E6294CBB0B009B351A /* AddUserFormView.swift */; };
+		A2E183E9294CBB4D009B351A /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E183E8294CBB4D009B351A /* UserViewModel.swift */; };
+		A2F9FF7C293A486200108ED6 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F9FF7B293A486200108ED6 /* ProductModel.swift */; };
 		FA19A2A52843844E00EC4D40 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA19A2A42843844D00EC4D40 /* GoogleService-Info.plist */; };
-		FA19A2A8284385EE00EC4D40 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FA19A2A7284385EE00EC4D40 /* FirebaseAuth */; };
+		FA90DA5E2A4A8249009B3BC8 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90DA5D2A4A8249009B3BC8 /* URLHelper.swift */; };
 		FADA7F4C2838C7B500916152 /* inventoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F4B2838C7B500916152 /* inventoryApp.swift */; };
 		FADA7F4E2838C7B500916152 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F4D2838C7B500916152 /* ContentView.swift */; };
 		FADA7F502838C7B700916152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADA7F4F2838C7B700916152 /* Assets.xcassets */; };
 		FADA7F532838C7B700916152 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADA7F522838C7B700916152 /* Preview Assets.xcassets */; };
 		FADA7F552838C7B700916152 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F542838C7B700916152 /* Persistence.swift */; };
-		FADA7F582838C7B700916152 /* inventory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F562838C7B700916152 /* inventory.xcdatamodeld */; };
 		FADA7F622838C7B700916152 /* inventoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F612838C7B700916152 /* inventoryTests.swift */; };
 		FADA7F6C2838C7B700916152 /* inventoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F6B2838C7B700916152 /* inventoryUITests.swift */; };
 		FADA7F6E2838C7B700916152 /* inventoryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA7F6D2838C7B700916152 /* inventoryUITestsLaunchTests.swift */; };
 		FADDFCE2283CA62E00007104 /* KaryawanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE1283CA62E00007104 /* KaryawanViewModel.swift */; };
-		FADDFCE4283CA7AE00007104 /* InventoryCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE3283CA7AE00007104 /* InventoryCoreDataHelper.swift */; };
-		FADDFCE6283CA7EA00007104 /* KaryawanCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */; };
 		FADDFCE9283CA82D00007104 /* KaryawanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCE8283CA82D00007104 /* KaryawanModel.swift */; };
 		FADDFCEB283CA9A800007104 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEA283CA9A800007104 /* TabBarView.swift */; };
 		FADDFCED283CBCF300007104 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEC283CBCF300007104 /* LoginViewModel.swift */; };
 		FADDFCEF283CC25500007104 /* BarangViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCEE283CC25500007104 /* BarangViewModel.swift */; };
-		FADDFCF1283CC2ED00007104 /* BarangModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF0283CC2ED00007104 /* BarangModel.swift */; };
-		FADDFCF3283CC45400007104 /* BarangCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */; };
 		FADDFCF5283CC57B00007104 /* BarangFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF4283CC57B00007104 /* BarangFormView.swift */; };
 		FADDFCF7283CCE1B00007104 /* PeminjamanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF6283CCE1B00007104 /* PeminjamanModel.swift */; };
-		FADDFCF9283CD1AD00007104 /* PeminjamanCoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCF8283CD1AD00007104 /* PeminjamanCoreDataHelper.swift */; };
 		FADDFCFB283CD24400007104 /* PeminjamanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCFA283CD24400007104 /* PeminjamanViewModel.swift */; };
 		FADDFCFD283CD43E00007104 /* PeminjamanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCFC283CD43E00007104 /* PeminjamanView.swift */; };
 		FADDFCFF283CD8CF00007104 /* ListPeminjamanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDFCFE283CD8CF00007104 /* ListPeminjamanView.swift */; };
@@ -63,32 +62,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A239F46E294361D90079C087 /* DepartemenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartemenModel.swift; sourceTree = "<group>"; };
+		A2CF87BF2935B72A00BD4040 /* network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = network.swift; sourceTree = "<group>"; };
+		A2CF87C12935B7A800BD4040 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A2E183E6294CBB0B009B351A /* AddUserFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserFormView.swift; sourceTree = "<group>"; };
+		A2E183E8294CBB4D009B351A /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		A2F9FF7B293A486200108ED6 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		FA19A2A42843844D00EC4D40 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA3A4F9C28438B0800C86814 /* inventory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = inventory.entitlements; sourceTree = "<group>"; };
+		FA90DA5D2A4A8249009B3BC8 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		FADA7F482838C7B500916152 /* inventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA7F4B2838C7B500916152 /* inventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inventoryApp.swift; sourceTree = "<group>"; };
 		FADA7F4D2838C7B500916152 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FADA7F4F2838C7B700916152 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FADA7F522838C7B700916152 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FADA7F542838C7B700916152 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		FADA7F572838C7B700916152 /* inventory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = inventory.xcdatamodel; sourceTree = "<group>"; };
 		FADA7F5D2838C7B700916152 /* inventoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = inventoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA7F612838C7B700916152 /* inventoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inventoryTests.swift; sourceTree = "<group>"; };
 		FADA7F672838C7B700916152 /* inventoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = inventoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FADA7F6B2838C7B700916152 /* inventoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inventoryUITests.swift; sourceTree = "<group>"; };
 		FADA7F6D2838C7B700916152 /* inventoryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inventoryUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FADDFCE1283CA62E00007104 /* KaryawanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaryawanViewModel.swift; sourceTree = "<group>"; };
-		FADDFCE3283CA7AE00007104 /* InventoryCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCoreDataHelper.swift; sourceTree = "<group>"; };
-		FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaryawanCoreDataHelper.swift; sourceTree = "<group>"; };
 		FADDFCE8283CA82D00007104 /* KaryawanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaryawanModel.swift; sourceTree = "<group>"; };
 		FADDFCEA283CA9A800007104 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		FADDFCEC283CBCF300007104 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		FADDFCEE283CC25500007104 /* BarangViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangViewModel.swift; sourceTree = "<group>"; };
-		FADDFCF0283CC2ED00007104 /* BarangModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangModel.swift; sourceTree = "<group>"; };
-		FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangCoreDataHelper.swift; sourceTree = "<group>"; };
 		FADDFCF4283CC57B00007104 /* BarangFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarangFormView.swift; sourceTree = "<group>"; };
 		FADDFCF6283CCE1B00007104 /* PeminjamanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanModel.swift; sourceTree = "<group>"; };
-		FADDFCF8283CD1AD00007104 /* PeminjamanCoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanCoreDataHelper.swift; sourceTree = "<group>"; };
 		FADDFCFA283CD24400007104 /* PeminjamanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanViewModel.swift; sourceTree = "<group>"; };
 		FADDFCFC283CD43E00007104 /* PeminjamanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeminjamanView.swift; sourceTree = "<group>"; };
 		FADDFCFE283CD8CF00007104 /* ListPeminjamanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPeminjamanView.swift; sourceTree = "<group>"; };
@@ -108,8 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA19A2A3284383E000EC4D40 /* FirebaseAnalytics in Frameworks */,
-				FA19A2A8284385EE00EC4D40 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +160,6 @@
 				FADA7F4D2838C7B500916152 /* ContentView.swift */,
 				FADA7F4F2838C7B700916152 /* Assets.xcassets */,
 				FADA7F542838C7B700916152 /* Persistence.swift */,
-				FADA7F562838C7B700916152 /* inventory.xcdatamodeld */,
 				FA19A2A42843844D00EC4D40 /* GoogleService-Info.plist */,
 				FADA7F512838C7B700916152 /* Preview Content */,
 			);
@@ -201,6 +198,7 @@
 				FADDFCEE283CC25500007104 /* BarangViewModel.swift */,
 				FADDFCEC283CBCF300007104 /* LoginViewModel.swift */,
 				FADDFCFA283CD24400007104 /* PeminjamanViewModel.swift */,
+				A2E183E8294CBB4D009B351A /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -209,8 +207,10 @@
 			isa = PBXGroup;
 			children = (
 				FADDFCE8283CA82D00007104 /* KaryawanModel.swift */,
-				FADDFCF0283CC2ED00007104 /* BarangModel.swift */,
 				FADDFCF6283CCE1B00007104 /* PeminjamanModel.swift */,
+				A2CF87C12935B7A800BD4040 /* User.swift */,
+				A2F9FF7B293A486200108ED6 /* ProductModel.swift */,
+				A239F46E294361D90079C087 /* DepartemenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,6 +230,7 @@
 				FADDFCFC283CD43E00007104 /* PeminjamanView.swift */,
 				FADDFCFE283CD8CF00007104 /* ListPeminjamanView.swift */,
 				FADDFD00283CD8FF00007104 /* PeminjamanFormView.swift */,
+				A2E183E6294CBB0B009B351A /* AddUserFormView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,10 +239,8 @@
 			isa = PBXGroup;
 			children = (
 				FAFE575C283A368A004F151D /* InventoryHelper.swift */,
-				FADDFCE3283CA7AE00007104 /* InventoryCoreDataHelper.swift */,
-				FADDFCE5283CA7EA00007104 /* KaryawanCoreDataHelper.swift */,
-				FADDFCF2283CC45400007104 /* BarangCoreDataHelper.swift */,
-				FADDFCF8283CD1AD00007104 /* PeminjamanCoreDataHelper.swift */,
+				A2CF87BF2935B72A00BD4040 /* network.swift */,
+				FA90DA5D2A4A8249009B3BC8 /* URLHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -263,8 +262,6 @@
 			);
 			name = inventory;
 			packageProductDependencies = (
-				FA19A2A2284383E000EC4D40 /* FirebaseAnalytics */,
-				FA19A2A7284385EE00EC4D40 /* FirebaseAuth */,
 			);
 			productName = inventory;
 			productReference = FADA7F482838C7B500916152 /* inventory.app */;
@@ -339,8 +336,6 @@
 			);
 			mainGroup = FADA7F3F2838C7B500916152;
 			packageReferences = (
-				FA19A2A1284383E000EC4D40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				FA19A2A6284385EE00EC4D40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FADA7F492838C7B500916152 /* Products */;
 			projectDirPath = "";
@@ -387,13 +382,12 @@
 			files = (
 				FADDFCEB283CA9A800007104 /* TabBarView.swift in Sources */,
 				FAFE5775283BFB98004F151D /* KaryawanView.swift in Sources */,
-				FADDFCE4283CA7AE00007104 /* InventoryCoreDataHelper.swift in Sources */,
 				FAFE575D283A368A004F151D /* InventoryHelper.swift in Sources */,
 				FAFE5771283A85DF004F151D /* ListBarangView.swift in Sources */,
-				FADDFCF3283CC45400007104 /* BarangCoreDataHelper.swift in Sources */,
+				A239F46F294361D90079C087 /* DepartemenModel.swift in Sources */,
 				FAFE5773283BFA03004F151D /* ListKaryawanView.swift in Sources */,
 				FADDFCF7283CCE1B00007104 /* PeminjamanModel.swift in Sources */,
-				FADA7F582838C7B700916152 /* inventory.xcdatamodeld in Sources */,
+				A2CF87C22935B7A800BD4040 /* User.swift in Sources */,
 				FADA7F552838C7B700916152 /* Persistence.swift in Sources */,
 				FADDFCFD283CD43E00007104 /* PeminjamanView.swift in Sources */,
 				FADDFCED283CBCF300007104 /* LoginViewModel.swift in Sources */,
@@ -401,17 +395,19 @@
 				FAFE576F283A8301004F151D /* DashboardView.swift in Sources */,
 				FADA7F4E2838C7B500916152 /* ContentView.swift in Sources */,
 				FAFE575A283A352F004F151D /* LoginView.swift in Sources */,
-				FADDFCE6283CA7EA00007104 /* KaryawanCoreDataHelper.swift in Sources */,
+				A2F9FF7C293A486200108ED6 /* ProductModel.swift in Sources */,
 				FAFE5777283BFBAA004F151D /* BarangView.swift in Sources */,
 				FADDFCFB283CD24400007104 /* PeminjamanViewModel.swift in Sources */,
 				FAFE5779283BFDA8004F151D /* KaryawanFormView.swift in Sources */,
 				FADDFCE9283CA82D00007104 /* KaryawanModel.swift in Sources */,
-				FADDFCF1283CC2ED00007104 /* BarangModel.swift in Sources */,
+				A2E183E7294CBB0B009B351A /* AddUserFormView.swift in Sources */,
+				A2CF87C02935B72A00BD4040 /* network.swift in Sources */,
 				FADDFCEF283CC25500007104 /* BarangViewModel.swift in Sources */,
-				FADDFCF9283CD1AD00007104 /* PeminjamanCoreDataHelper.swift in Sources */,
 				FADA7F4C2838C7B500916152 /* inventoryApp.swift in Sources */,
 				FADDFCE2283CA62E00007104 /* KaryawanViewModel.swift in Sources */,
+				A2E183E9294CBB4D009B351A /* UserViewModel.swift in Sources */,
 				FADDFD01283CD8FF00007104 /* PeminjamanFormView.swift in Sources */,
+				FA90DA5E2A4A8249009B3BC8 /* URLHelper.swift in Sources */,
 				FADDFCF5283CC57B00007104 /* BarangFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,7 +581,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.infineon.inventory;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infineon.inventoryku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -615,7 +611,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.infineon.inventory;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infineon.inventoryku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -739,51 +735,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		FA19A2A1284383E000EC4D40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		FA19A2A6284385EE00EC4D40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		FA19A2A2284383E000EC4D40 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA19A2A1284383E000EC4D40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		FA19A2A7284385EE00EC4D40 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FA19A2A1284383E000EC4D40 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		FADA7F562838C7B700916152 /* inventory.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				FADA7F572838C7B700916152 /* inventory.xcdatamodel */,
-			);
-			currentVersion = FADA7F572838C7B700916152 /* inventory.xcdatamodel */;
-			path = inventory.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FADA7F402838C7B500916152 /* Project object */;
 }

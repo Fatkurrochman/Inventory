@@ -14,16 +14,19 @@ struct DashboardView: View {
     @ObservedObject var karyawanVM: KaryawanViewModel = KaryawanViewModel()
     @ObservedObject var peminjamanVM: PeminjamanViewModel = PeminjamanViewModel()
     
+    @ObservedObject var addUserVM:UserViewModel = UserViewModel()
+    
     @State var isBarang: Bool = false
     @State var isKaryawan: Bool = false
     @State var isPeminjaman: Bool = false
     
     var body: some View {
         NavigationView {
+            ScrollView {
             VStack {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Hello, Admin")
+                        Text("Hello, \(loginVM.username)") 
                             .font(.title)
                         Text("Welcome Back!")
                             .font(.title3)
@@ -36,7 +39,7 @@ struct DashboardView: View {
                     }
                     .padding()
                     .background(
-                        RoundedRectangle(cornerRadius: 30.0)
+                        RoundedRectangle(cornerRadius: 15)
                             .foregroundColor(InventoryHelper.buttonDashboard)
                     ).onTapGesture {
                         loginVM.logout()
@@ -50,9 +53,14 @@ struct DashboardView: View {
                     NavigationLink(
                         destination: BarangView().environmentObject(barangVM), isActive: $isBarang) {
                         HStack {
+//                            Image("Barang")
+//                                .resizable()
+//                                .frame(width: 50, height: 50, alignment: .center)
+//                                .foregroundColor(.black)
+//                                .padding()
                             Image(systemName: "shippingbox")
                                 .resizable()
-                                .frame(width: 50, height: 50, alignment: .center)
+                                .frame(width: 40, height: 40, alignment: .center)
                                 .foregroundColor(.black)
                                 .padding()
                             Text("Barang")
@@ -60,7 +68,7 @@ struct DashboardView: View {
                                 .foregroundColor(.black)
                             Spacer()
                         }.background(
-                            RoundedRectangle(cornerRadius: 30.0)
+                            RoundedRectangle(cornerRadius: 15)
                                 .foregroundColor(InventoryHelper.buttonDashboard)
                         )
                         .padding()
@@ -74,9 +82,14 @@ struct DashboardView: View {
                     NavigationLink(
                         destination: KaryawanView().environmentObject(karyawanVM), isActive: $isKaryawan) {
                         HStack {
+//                            Image("Karyawan")
+//                                .resizable()
+//                                .frame(width: 50, height: 50, alignment: .center)
+//                                .foregroundColor(.black)
+//                                .padding()
                             Image(systemName: "person.3")
                                 .resizable()
-                                .frame(width: 50, height: 50, alignment: .center)
+                                .frame(width: 40, height: 40, alignment: .center)
                                 .foregroundColor(.black)
                                 .padding()
                             Text("Karyawan")
@@ -84,7 +97,7 @@ struct DashboardView: View {
                                 .foregroundColor(.black)
                             Spacer()
                         }.background(
-                            RoundedRectangle(cornerRadius: 30.0)
+                            RoundedRectangle(cornerRadius: 15)
                                 .foregroundColor(InventoryHelper.buttonDashboard)
                         ).padding()
                      }
@@ -97,24 +110,54 @@ struct DashboardView: View {
                     NavigationLink(
                         destination: PeminjamanView().environmentObject(peminjamanVM), isActive: $isPeminjaman) {
                         HStack {
-                            Image(systemName: "bag")
+                            Image(systemName: "list.clipboard")
                                 .resizable()
-                                .frame(width: 50, height: 50, alignment: .center)
+                                .frame(width: 40, height: 40, alignment: .center)
                                 .foregroundColor(.black)
                                 .padding()
+//                            Image("Peminjaman")
+//                                .resizable()
+//                                .frame(width: 50, height: 50, alignment: .center)
+//                                .foregroundColor(.black)
+//                                .padding()
                             Text("Peminjaman")
                                 .font(.title)
                                 .foregroundColor(.black)
                             Spacer()
                         }.background(
-                            RoundedRectangle(cornerRadius: 30.0)
+                            RoundedRectangle(cornerRadius: 15)
                                 .foregroundColor(InventoryHelper.buttonDashboard)
                         ).padding()
                      }
                     .contentShape(Rectangle())
                 }
+                Button {
+                    addUserVM.isPresented.toggle()
+                } label: {
+             
+                        HStack {
+                            Image(systemName: "person.fill.badge.plus")
+                                .resizable()
+                                .frame(width: 40, height: 40, alignment: .center)
+                                .foregroundColor(.black)
+                                .padding()
+                            Text("Pengguna")
+                                .font(.title)
+                                .foregroundColor(.black)
+                            Spacer()
+                        }.background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .foregroundColor(InventoryHelper.buttonDashboard)
+                        ).padding()
+                     
+                    .contentShape(Rectangle())
+                }
                 
                 Spacer()
+            }
+            }
+            .sheet(isPresented: $addUserVM.isPresented) {
+                AddUserFormView(userVM: addUserVM, isPresented: $addUserVM.isPresented)
             }
             .navigationTitle("Dashboard")
             .navigationBarHidden(true)
@@ -125,5 +168,7 @@ struct DashboardView: View {
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardView()
+            .environmentObject(LoginViewModel())
+            
     }
 }

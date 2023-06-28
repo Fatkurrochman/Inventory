@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListBarangContentView: View {
-    var barang: BarangModel
+    var barang: ProductModel
     
     var body: some View {
         HStack {
@@ -22,17 +22,18 @@ struct ListBarangContentView: View {
             Text(String(barang.qty))
                 .font(.system(size: 15, design: .rounded))
         }
+     
         .padding()
-        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.groupColor))
+        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.buttonDashboard))
     }
 }
 
 struct ListBarangView: View {
     @ObservedObject var barangVM: BarangViewModel
+    
     var body: some View {
-        ScrollView {
-            ForEach (barangVM.filterBarang(), id:\.id) {
-                key in
+        ScrollView { 
+            ForEach (barangVM.barang, id:\.id) { key in
                 VStack(spacing: 10) {
                     ListBarangContentView(
                         barang: key)
@@ -45,20 +46,33 @@ struct ListBarangView: View {
                     }
                     Divider()
                     Button {
-                        barangVM.deleteById(model: key)
+                        barangVM.openAlert(model:key)
                     } label: {
                         Text("Hapus")
                         Image(systemName: "trash")
                     }
+                 
+                }
+                .alert("Delete Item ?", isPresented: $barangVM.showingAlertDelete) {
+                  
+                    Button("Cancel", role: .cancel) { }
+                    Button("Delete", role: .destructive, action: {
+                        barangVM.deleteById()
+                    })
+                        }
+            message:  {
+                  Text("Are you sure want to delete this item ?")
                 }
                 .padding(.horizontal)
+           
             }
         }
     }
 }
 
+
 struct PeminjamanListBarangContentView: View {
-    var barang: BarangModel
+    var barang: ProductModel
     
     var body: some View {
         HStack {
@@ -73,12 +87,7 @@ struct PeminjamanListBarangContentView: View {
                 .font(.system(size: 15, design: .rounded))
         }
         .padding()
-//        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.groupColor))
     }
+
 }
 
-//struct ListBarangView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListBarangView()
-//    }
-//}

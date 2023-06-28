@@ -9,24 +9,33 @@ import SwiftUI
 
 struct ListKaryawanContentView: View {
     var karyawan: KaryawanModel
+    var departments: [DepartemenModel]
+    
+    func generateDepartmentName(department_id: Int) -> String {
+        let dep_ids = self.departments.filter({ d in
+            d.id == department_id
+        })
+        if dep_ids.count > 0 {
+            return dep_ids[0].name
+        } else {
+            return ""
+        }
+    }
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
                 Text(karyawan.name)
                     .font(.system(size: 15, design: .rounded))
-                Text(karyawan.badge_id + " - " + karyawan.department)
+                Text(karyawan.badge_id + " - " + "\(generateDepartmentName(department_id: karyawan.department_id))")
                     .font(.system(size: 13, design: .rounded))
                 Text(karyawan.email)
                     .font(.system(size: 13, design: .rounded))
-//                    Text("Departemen")
-//                        .font(.system(size: 13, design: .rounded))
-//                        .foregroundColor(Color.init(.systemGray))
             }
             Spacer()
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.groupColor))
+        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.buttonDashboard))
     }
 }
 
@@ -34,11 +43,10 @@ struct ListKaryawanView: View {
     @ObservedObject var karyawanVM: KaryawanViewModel
     var body: some View {
         ScrollView {
-            ForEach (karyawanVM.filterKaryawan(), id:\.id) {
+            ForEach (karyawanVM.karyawan, id:\.id) {
                 key in
                 VStack(spacing: 10) {
-                    ListKaryawanContentView(
-                        karyawan: key)
+                    ListKaryawanContentView(karyawan: key, departments: karyawanVM.departementList)
                 }
                 .contextMenu {
                     Button {
@@ -48,11 +56,21 @@ struct ListKaryawanView: View {
                     }
                     Divider()
                     Button {
-                        karyawanVM.deleteById(model: key)
+                        karyawanVM.openAlert(model:key)
                     } label: {
                         Text("Hapus")
                         Image(systemName: "trash")
                     }
+                }
+                .alert("Delete Employee ?", isPresented: $karyawanVM.showingAlertDelete) {
+                  
+                    Button("Cancel", role: .cancel) { }
+                    Button("Delete", role: .destructive, action: {
+                        karyawanVM.deleteById()
+                    })
+                        }
+            message:  {
+                  Text("Are you sure want to delete this Employee ?")
                 }
                 .padding(.horizontal)
             }
@@ -60,8 +78,5 @@ struct ListKaryawanView: View {
     }
 }
 
-//struct ListKaryawanView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListKaryawanView()
-//    }
-//}
+
+

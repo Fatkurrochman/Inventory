@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+
 
 @main
 struct inventoryApp: App {
@@ -14,7 +14,7 @@ struct inventoryApp: App {
     @ObservedObject var loginVM: LoginViewModel = LoginViewModel()
     
     init() {
-        FirebaseApp.configure()
+        
     }
 
     var body: some Scene {
@@ -24,7 +24,6 @@ struct inventoryApp: App {
                     .environmentObject(loginVM)
             } else {
                 DashboardView()
-//                TabBarView()
                     .environmentObject(loginVM)
             }
         }.onChange(of: scenePhase) { phase in

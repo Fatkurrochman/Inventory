@@ -9,21 +9,51 @@ import SwiftUI
 
 struct ListPeminjamanContentView: View {
     var peminjaman: PeminjamanModel
+    var products: [ProductModel]
+    var employees: [KaryawanModel]
+    
+    func generateEmployeeName(employee_id: Int) -> String {
+        let emp_ids = self.employees.filter({ e in
+            e.id == employee_id
+        })
+        if emp_ids.count > 0 {
+            return emp_ids[0].name
+        } else {
+            return ""
+        }
+    }
+    
+    func generateProductName(product_id: Int) -> String {
+        let prod_ids = self.products.filter({ p in
+            p.id == product_id
+        })
+        if prod_ids.count > 0 {
+            return prod_ids[0].name
+        } else {
+            return ""
+        }
+    }
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
-                Text(peminjaman.barangId == peminjaman.peminjaman.barang_id ? peminjaman.barangId.name ?? "" : "")
+                Text(generateProductName(product_id: peminjaman.product_id))
                     .font(.system(size: 15, design: .rounded))
-                Text(peminjaman.karyawanId == peminjaman.peminjaman.karyawan_id ? peminjaman.karyawanId.name ?? "" : "")
+                Text(generateEmployeeName(employee_id: peminjaman.employee_id))
                     .font(.system(size: 13, design: .rounded))
+                HStack {
+                    Text("\(peminjaman.formattedStartDate.formatted(date: .numeric, time: .omitted)) -")
+                        .font(.system(size: 13, design: .rounded))
+                    Text("\(peminjaman.formattedEndDate.formatted(date: .numeric, time: .omitted))")
+                    .font(.system(size: 13, design: .rounded))
+                }
             }
             Spacer()
-            Text(String(peminjaman.peminjamanStatus))
+            Text(peminjaman.statusFormatted)
                 .font(.system(size: 15, design: .rounded))
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.groupColor))
+        .background(RoundedRectangle(cornerRadius: 15).fill(InventoryHelper.buttonDashboard))
     }
 }
 
@@ -31,11 +61,10 @@ struct ListPeminjamanView: View {
     @ObservedObject var peminjamanVM: PeminjamanViewModel
     var body: some View {
         ScrollView {
-            ForEach (peminjamanVM.filterPeminjaman(), id:\.id) {
+            ForEach (peminjamanVM.peminjaman, id:\.id) {
                 key in
                 VStack(spacing: 10) {
-                    ListPeminjamanContentView(
-                        peminjaman: key)
+                    ListPeminjamanContentView(peminjaman: key, products: peminjamanVM.productList, employees: peminjamanVM.employeeList)
                 }
                 .contextMenu {
                     Button {
@@ -44,17 +73,28 @@ struct ListPeminjamanView: View {
                         Label("Ubah Peminjaman", systemImage: "square.and.pencil")
                     }
                     Button {
-                        peminjamanVM.fillForm(model: key)
+                        peminjamanVM.onComplatePeminjaman(model: key)
                     } label: {
                         Label("Selesaikan Peminjaman", systemImage: "checkmark.circle ")
                     }
-                    Divider()
                     Button {
-                        peminjamanVM.deleteById(model: key)
+                        peminjamanVM.openAlert(model:key)
                     } label: {
                         Text("Hapus")
                         Image(systemName: "trash")
                     }
+                   
+                   
+                }
+                .alert("Delete Loan ?", isPresented: $peminjamanVM.showingAlertDelete) {
+                  
+                    Button("Cancel", role: .cancel) { }
+                    Button("Delete", role: .destructive, action: {
+                        peminjamanVM.deleteById()
+                    })
+                        }
+            message:  {
+                  Text("Are you sure want to delete this Loan ?")
                 }
                 .padding(.horizontal)
             }
