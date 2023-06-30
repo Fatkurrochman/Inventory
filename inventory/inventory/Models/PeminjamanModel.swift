@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 struct PeminjamanModel: Identifiable, Decodable  {
-
     let id: Int
     let product_id: Int
     let employee_id: Int
@@ -23,12 +22,12 @@ struct PeminjamanModel: Identifiable, Decodable  {
 extension PeminjamanModel {
     var formattedStartDate: Date {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-d HH:mm:ss"
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             return formatter.date(from: start_date) ?? Date()
         }
     var formattedEndDate: Date {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-d HH:mm:ss"
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             return formatter.date(from: end_date) ?? Date()
         }
     var statusFormatted: String {

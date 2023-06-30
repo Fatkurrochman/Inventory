@@ -40,7 +40,7 @@ struct PeminjamanFormView: View {
         peminjamanVM.karyawanId = "\(karyawan.id)"
         peminjamanVM.karyawanBadge = karyawan.badge_id
         peminjamanVM.karyawanEmail = karyawan.email
-        peminjamanVM.karyawanDepartement = ""
+        peminjamanVM.karyawanDepartement = peminjamanVM.generateDepartmentName(department_id: karyawan.department_id)
     }
     
     var body: some View {
@@ -60,22 +60,19 @@ struct PeminjamanFormView: View {
                                             }
                                     }
                                 }
-                                                    .pickerStyle(.navigationLink)
-                                                } else {
-                                                    Picker(selection: $peminjamanVM.karyawanId, label: Text("\(peminjamanVM.karyawanName)")
-                                                            .font(.system(.callout, design: .rounded))) {
-                                                                ForEach(peminjamanVM.employeeList, id:\.id) { key in
-                                                                    Text("\(key.name) (\(key.badge_id))")
-                                                                .contentShape(Rectangle())
-                                                                .onTapGesture {
-                                                                    karyawanListOnTap(karyawan: key)
-                                                                }
-                                                        }
-                                                    }
+                                        .pickerStyle(.navigationLink)
+                                } else {
+                                    Picker(selection: $peminjamanVM.karyawanId, label: Text("\(peminjamanVM.karyawanName)")
+                                            .font(.system(.callout, design: .rounded))) {
+                                                ForEach(peminjamanVM.employeeList, id:\.id) { key in
+                                                    Text("\(key.name) (\(key.badge_id))")
+                                                .contentShape(Rectangle())
+                                                .onTapGesture {
+                                                    karyawanListOnTap(karyawan: key)
                                                 }
-                     
-                                
-                      
+                                        }
+                                    }
+                                }
                         }
                 }
                 Section {
@@ -102,24 +99,23 @@ struct PeminjamanFormView: View {
                                             barangOnTap(barang: key)
                                         }
                                 }
+                            }.pickerStyle(.navigationLink)
+                        } else {
+                            Picker(selection: $peminjamanVM.barangId, label: Text("\(peminjamanVM.barangName)")
+                                    .font(.system(.callout, design: .rounded))) {
+                                        ForEach(peminjamanVM.productList, id:\.id) { key in
+                                            PeminjamanListBarangContentView(barang: key)
+                                        .contentShape(Rectangle())
+                                        .onTapGesture {
+                                            barangOnTap(barang: key)
+                                        }
+                                }
                             }
-                                                .pickerStyle(.navigationLink)
-                                            } else {
-                                                Picker(selection: $peminjamanVM.barangId, label: Text("\(peminjamanVM.barangName)")
-                                                        .font(.system(.callout, design: .rounded))) {
-                                                            ForEach(peminjamanVM.productList, id:\.id) { key in
-                                                                PeminjamanListBarangContentView(barang: key)
-                                                            .contentShape(Rectangle())
-                                                            .onTapGesture {
-                                                                barangOnTap(barang: key)
-                                                            }
-                                                    }
-                                                }
-                                            }
-                  
-                        
+                        }
                         TextField("Jumlah", text: $peminjamanVM.qty)
                             .font(.system(.callout, design: .rounded))
+                            .textContentType(.oneTimeCode)
+                            .keyboardType(.numberPad)
                 }
                 Section(header: Text("Detail Tanggal Peminjaman")
                     .font(.system(.caption, design: .rounded))) {

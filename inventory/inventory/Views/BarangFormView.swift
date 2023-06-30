@@ -44,6 +44,8 @@ struct BarangFormView: View {
                             .font(.system(.callout, design: .rounded))
                         TextField("Jumlah Barang", text: $barangVM.qty)
                             .font(.system(.callout, design: .rounded))
+                            .textContentType(.oneTimeCode)
+                            .keyboardType(.numberPad)
                         if(barangVM.isEmptyForm){
                             Text("Mohon untuk mengisi semua data barang terlebih dahulu")
                                 .foregroundColor(.red)
@@ -54,8 +56,6 @@ struct BarangFormView: View {
                                 .foregroundColor(.red)
                                 .font(.system(size: 14))
                         }
-                        
-                       
                 }
             }
           

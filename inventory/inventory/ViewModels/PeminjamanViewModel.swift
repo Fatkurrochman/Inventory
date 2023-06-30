@@ -28,6 +28,7 @@ class PeminjamanViewModel: ObservableObject {
     @Published var isErrorForm: Bool = false
     @Published var karyawan: [KaryawanModel] = []
     @Published var peminjaman: [PeminjamanModel] = []
+    @Published var departementList: [DepartemenModel] = []
     @Published var employeeList: [KaryawanModel] = []
     @Published var productList: [ProductModel] = []
     @Published var karyawanDetail: [KaryawanDetailModel] = []
@@ -42,6 +43,30 @@ class PeminjamanViewModel: ObservableObject {
         fetchEmployee()
         fetchProductList()
         fetchOrderList()
+        fetchDepartmentList()
+    }
+    
+    func fetchDepartmentList() {
+        let request = URLHelpers.urlRequest(urlPath: "/department", method: "GET", useAuthorization: true)
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Request error: ", error)
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {     return }
+            if response.statusCode == 200 {
+                guard let data = data else { return }
+                DispatchQueue.main.async {
+                    do {
+                        let decodedUsers = try JSONDecoder().decode([DepartemenModel].self, from: data)
+                        self.departementList = decodedUsers
+                    } catch let error {
+                        print("Error fetch Department: ", error)
+                    }
+                }
+            }
+        }
+        dataTask.resume()
     }
     
     func openAlert(model:PeminjamanModel){
@@ -94,6 +119,17 @@ class PeminjamanViewModel: ObservableObject {
         }
     }
     
+    func generateDepartmentName(department_id: Int) -> String {
+        let dep_ids = self.departementList.filter({ d in
+            d.id == department_id
+        })
+        if dep_ids.count > 0 {
+            return dep_ids[0].name
+        } else {
+            return ""
+        }
+    }
+    
     func fillForm(model: PeminjamanModel) {
         self.id = model.id
         self.status = "edit"
@@ -123,7 +159,7 @@ class PeminjamanViewModel: ObservableObject {
                         let decodedProduct = try JSONDecoder().decode([KaryawanDetailModel].self, from: data)
                         self.karyawanBadge = decodedProduct[0].badge_id
                         self.karyawanEmail = decodedProduct[0].email
-                        self.karyawanDepartement = ""
+                        self.karyawanDepartement = self.generateDepartmentName(department_id: decodedProduct[0].department_id)
                         self.karyawanName = decodedProduct[0].name
                         print("decode",decodedProduct[0].email)
                     } catch let error {
@@ -200,11 +236,11 @@ class PeminjamanViewModel: ObservableObject {
                 }
             let body : [String:String] = [
                 "product_id": self.barangId,
-                "employee_id":self.karyawanId,
-                "qty":self.qty,
-                "start_date":"\(formattedStartDate)",
-                "end_date":"\(formattedEndDate)",
-                "status":"1",
+                "employee_id": self.karyawanId,
+                "qty": self.qty,
+                "start_date ":"\(formattedStartDate)",
+                "end_date": "\(formattedEndDate)",
+                "status": "On Loan",
             ]
             guard let finalBody = try? JSONEncoder().encode(body) else { return }
             var request = URLHelpers.urlRequest(urlPath: "/order/\(self.id)", method: "PUT", useAuthorization: true)
@@ -263,7 +299,7 @@ class PeminjamanViewModel: ObservableObject {
                 "qty": self.qty,
                 "start_date":"\(formattedStartDate)",
                 "end_date":"\(formattedEndDate)",
-                "status":"1",
+                "status":"On Loan",
             ]
             guard let finalBody = try? JSONEncoder().encode(body) else {return}
             var request = URLHelpers.urlRequest(urlPath: "/order", method: "POST", useAuthorization: true)
