@@ -78,15 +78,15 @@ struct PeminjamanListBarangContentView: View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
                 Text(barang.name)
-                    .font(.system(size: 15, design: .rounded))
+                    .font(.system(size: 10, design: .rounded))
                 Text(barang.code)
-                .font(.system(size: 13, design: .rounded))
+                    .font(.system(size: 8, design: .rounded))
             }
             Spacer()
             Text(String(barang.qty))
-                .font(.system(size: 15, design: .rounded))
+                .font(.system(size: 10, design: .rounded))
         }
-        .padding()
+//        .padding()
     }
 
 }

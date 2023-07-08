@@ -35,6 +35,9 @@ class PeminjamanViewModel: ObservableObject {
     @Published var showingAlertDelete = false
     @Published var productIdSelected: String = ""
     @Published var karyawanBadge = ""
+    @Published var cancelOrderId = 0
+    @Published var showingAlertFailed = false
+    @Published var avoidStatus = ["Cancel", "Returned"]
     
     let URLHelpers = URLHelper()
      
@@ -72,6 +75,7 @@ class PeminjamanViewModel: ObservableObject {
     func openAlert(model:PeminjamanModel){
         showingAlertDelete = true
         self.productIdSelected = String(model.id)
+        cancelOrderId = model.id
     }
 
     func fetchOrderList() {
@@ -105,6 +109,17 @@ class PeminjamanViewModel: ObservableObject {
             return emp_ids[0].name
         } else {
             return ""
+        }
+    }
+    
+    func getProductQty(product_id: Int) -> Int {
+        let prod_ids = self.productList.filter({ p in
+            p.id == product_id
+        })
+        if prod_ids.count > 0 {
+            return prod_ids[0].qty
+        } else {
+            return 0
         }
     }
     
@@ -293,35 +308,76 @@ class PeminjamanViewModel: ObservableObject {
                     formatter.dateFormat = "yyyy-MM-d"
                     return formatter.string(from: self.endDate)
                 }
-            let body : [String:String] = [
-                "product_id": self.barangId,
-                "employee_id":self.karyawanId,
-                "qty": self.qty,
-                "start_date":"\(formattedStartDate)",
-                "end_date":"\(formattedEndDate)",
-                "status":"On Loan",
-            ]
-            guard let finalBody = try? JSONEncoder().encode(body) else {return}
-            var request = URLHelpers.urlRequest(urlPath: "/order", method: "POST", useAuthorization: true)
-            request.httpBody = finalBody
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Request error: ", error)
-                    return
-                }
-                guard let response = response as? HTTPURLResponse else { return }
-                if response.statusCode == 200 {
-                    DispatchQueue.main.async {
-                        self.isErrorForm = false
+            if ((self.getProductQty(product_id: Int(self.barangId) ?? 0)) >= Int(self.qty) ?? 0) {
+                let body : [String:String] = [
+                    "product_id": self.barangId,
+                    "employee_id":self.karyawanId,
+                    "qty": self.qty,
+                    "start_date":"\(formattedStartDate)",
+                    "end_date":"\(formattedEndDate)",
+                    "status":"On Loan",
+                ]
+                guard let finalBody = try? JSONEncoder().encode(body) else {return}
+                var request = URLHelpers.urlRequest(urlPath: "/order", method: "POST", useAuthorization: true)
+                request.httpBody = finalBody
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Request error: ", error)
+                        return
+                    }
+                    guard let response = response as? HTTPURLResponse else { return }
+                    if response.statusCode == 200 {
+                        DispatchQueue.main.async {
+                            self.isErrorForm = false
+                            self.fetchOrderList()
+                        }
+                    } else {
+                        print("gagal")
+                        DispatchQueue.main.async {
+                            self.isErrorForm = true
+                        }
+                    }
+                }.resume()
+            }
+            else {
+                self.showingAlertFailed = true
+            }
+        }
+    }
+    
+    func cancel() {
+        let order_ids = self.peminjaman.filter({ p in
+            p.id == self.cancelOrderId
+        })
+        if order_ids.count > 0 {
+            let order_id = order_ids[0]
+            if avoidStatus.contains(order_id.status) {
+                self.showingAlertFailed = true
+            } else {
+                let body : [String:String] = [
+                    "product_id": "\(order_id.product_id)",
+                    "employee_id": "\(order_id.employee_id)",
+                    "qty": "\(order_id.qty)",
+                    "status": "Cancel",
+                    "type": "cancel"
+                ]
+                guard let finalBody = try? JSONEncoder().encode(body) else { return }
+                var request = URLHelpers.urlRequest(urlPath: "/order/\(self.cancelOrderId)", method: "PUT", useAuthorization: true)
+                request.httpBody = finalBody
+                
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Request error: ", error)
+                        return
+                    }
+                    guard let response = response as? HTTPURLResponse else { return }
+                    if response.statusCode == 200 {
                         self.fetchOrderList()
+                    } else {
+                        print("bahaya", response)
                     }
-                } else {
-                    print("gagal")
-                    DispatchQueue.main.async {
-                        self.isErrorForm = true
-                    }
-                }
-            }.resume()
+                }.resume()
+            }
         }
     }
     
@@ -342,20 +398,31 @@ class PeminjamanViewModel: ObservableObject {
     }
     
     func onComplatePeminjaman(model: PeminjamanModel) {
-        var request = URLHelpers.urlRequest(urlPath: "/order/\(model.id)/complete", method: "PUT", useAuthorization: true)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Request error: ", error)
-                return
-            }
-            guard let response = response as? HTTPURLResponse else { return }
-            if response.statusCode == 200 {
-                self.fetchOrderList()
-            } else {
-                print("bahaya")
-            }
-        }.resume()
+        if avoidStatus.contains(model.status) {
+            self.showingAlertFailed = true
+        } else {
+            let body : [String:String] = [
+                "product_id": "\(model.product_id)",
+                "employee_id": "\(model.employee_id)",
+                "qty": "\(model.qty)",
+                "status": "Returned",
+                "type": "returned"
+            ]
+            guard let finalBody = try? JSONEncoder().encode(body) else { return }
+            var request = URLHelpers.urlRequest(urlPath: "/order/\(model.id)", method: "PUT", useAuthorization: true)
+            request.httpBody = finalBody
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Request error: ", error)
+                    return
+                }
+                guard let response = response as? HTTPURLResponse else { return }
+                if response.statusCode == 200 {
+                    self.fetchOrderList()
+                } else {
+                    print("bahaya")
+                }
+            }.resume()
+        }
     }
 }

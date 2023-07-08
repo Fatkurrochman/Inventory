@@ -8,6 +8,12 @@
 import Foundation
 import SwiftUI
 
+//extension UIApplication {
+//    func endEditing() {
+//        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//    }
+//}
+
 struct InventoryHelper {
     static var companyLogo = Image("CompanyLogo")
     static var buttonDashboard = Color("ButtonDashboard")

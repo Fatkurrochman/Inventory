@@ -68,33 +68,28 @@ struct ListPeminjamanView: View {
                 }
                 .contextMenu {
                     Button {
-                        peminjamanVM.fillForm(model: key)
-                    } label: {
-                        Label("Ubah Peminjaman", systemImage: "square.and.pencil")
-                    }
-                    Button {
                         peminjamanVM.onComplatePeminjaman(model: key)
                     } label: {
-                        Label("Selesaikan Peminjaman", systemImage: "checkmark.circle ")
+                        Label("Selesaikan Peminjaman", systemImage: "checkmark.circle")
                     }
                     Button {
-                        peminjamanVM.openAlert(model:key)
+                        peminjamanVM.openAlert(model: key)
                     } label: {
-                        Text("Hapus")
+                        Text("Cancel Peminjaman")
                         Image(systemName: "trash")
                     }
-                   
-                   
                 }
-                .alert("Delete Loan ?", isPresented: $peminjamanVM.showingAlertDelete) {
-                  
+                .alert("Order tidak dapat di cancel atau di selesaikan", isPresented: $peminjamanVM.showingAlertFailed, actions: {
+                    Button("Close", role: .cancel) { }
+                })
+                .alert("Cancel Loan ?", isPresented: $peminjamanVM.showingAlertDelete) {
                     Button("Cancel", role: .cancel) { }
-                    Button("Delete", role: .destructive, action: {
-                        peminjamanVM.deleteById()
+                    Button("Yes", role: .destructive, action: {
+                        peminjamanVM.cancel()
                     })
-                        }
-            message:  {
-                  Text("Are you sure want to delete this Loan ?")
+                }
+                message:  {
+                  Text("Are you sure want to cancel this Loan ?")
                 }
                 .padding(.horizontal)
             }

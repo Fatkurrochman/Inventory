@@ -48,67 +48,69 @@ struct PeminjamanFormView: View {
             Form {
                 Section(header: Text("Data Karyawan")
                     .font(.system(.caption, design: .rounded))) {
-                        HStack {
-                            if #available(iOS 16.0, *) {
-                                Picker(selection: $peminjamanVM.karyawanId, label: Text("\(peminjamanVM.karyawanName)")
-                                        .font(.system(.callout, design: .rounded))) {
-                                            ForEach(peminjamanVM.employeeList, id:\.id) { key in
-                                                Text("\(key.name) (\(key.badge_id))")
-                                            .contentShape(Rectangle())
-                                            .onTapGesture {
-                                                karyawanListOnTap(karyawan: key)
-                                            }
+                    HStack {
+                    if #available(iOS 16.0, *) {
+                        Picker(selection: $peminjamanVM.karyawanId, label: Text("\(peminjamanVM.karyawanName)")
+                                .font(.system(.callout, design: .rounded))) {
+                                    ForEach(peminjamanVM.employeeList, id:\.id) { key in
+                                        Text("\(key.name) (\(key.badge_id))")
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        karyawanListOnTap(karyawan: key)
                                     }
-                                }
-                                        .pickerStyle(.navigationLink)
-                                } else {
-                                    Picker(selection: $peminjamanVM.karyawanId, label: Text("\(peminjamanVM.karyawanName)")
-                                            .font(.system(.callout, design: .rounded))) {
-                                                ForEach(peminjamanVM.employeeList, id:\.id) { key in
-                                                    Text("\(key.name) (\(key.badge_id))")
-                                                .contentShape(Rectangle())
-                                                .onTapGesture {
-                                                    karyawanListOnTap(karyawan: key)
-                                                }
-                                        }
-                                    }
-                                }
+                            }
                         }
+                        .pickerStyle(.navigationLink)
+                        } else {
+                            Picker(selection: $peminjamanVM.karyawanId, label: Text("\(peminjamanVM.karyawanName)")
+                                .font(.system(.callout, design: .rounded))) {
+                                    ForEach(peminjamanVM.employeeList, id:\.id) { key in
+                                        Text("\(key.name) (\(key.badge_id))")
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        karyawanListOnTap(karyawan: key)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 Section {
                     TextField("Badge", text: $peminjamanVM.karyawanBadge)
-                            .font(.system(.callout, design: .rounded))
-                            .disabled(true)
+                        .font(.system(.callout, design: .rounded))
+                        .disabled(true)
                     TextField("Departemen", text: $peminjamanVM.karyawanDepartement)
-                            .font(.system(.callout, design: .rounded))
-                            .disabled(true)
+                        .font(.system(.callout, design: .rounded))
+                        .disabled(true)
                     TextField("Email", text: $peminjamanVM.karyawanEmail)
-                            .font(.system(.callout, design: .rounded))
-                            .disabled(true)
+                        .font(.system(.callout, design: .rounded))
+                        .disabled(true)
                 }
                 
                 Section(header: Text("Data Barang")
                     .font(.system(.caption, design: .rounded))) {
                         if #available(iOS 16.0, *) {
                             Picker(selection: $peminjamanVM.barangId, label: Text("\(peminjamanVM.barangName)")
-                                    .font(.system(.callout, design: .rounded))) {
-                                        ForEach(peminjamanVM.productList, id:\.id) { key in
-                                            PeminjamanListBarangContentView(barang: key)
-                                        .contentShape(Rectangle())
-                                        .onTapGesture {
-                                            barangOnTap(barang: key)
-                                        }
+                                .font(.system(.callout, design: .rounded))) {
+                                    ForEach(peminjamanVM.productList, id:\.id) { key in
+//                                        PeminjamanListBarangContentView(barang: key)
+                                        Text("\(key.name) (\(key.code))")
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        barangOnTap(barang: key)
+                                    }
                                 }
                             }.pickerStyle(.navigationLink)
                         } else {
                             Picker(selection: $peminjamanVM.barangId, label: Text("\(peminjamanVM.barangName)")
-                                    .font(.system(.callout, design: .rounded))) {
-                                        ForEach(peminjamanVM.productList, id:\.id) { key in
-                                            PeminjamanListBarangContentView(barang: key)
-                                        .contentShape(Rectangle())
-                                        .onTapGesture {
-                                            barangOnTap(barang: key)
-                                        }
+                                .font(.system(.callout, design: .rounded))) {
+                                    ForEach(peminjamanVM.productList, id:\.id) { key in
+//                                        PeminjamanListBarangContentView(barang: key)
+                                        Text("\(key.name) (\(key.code))")
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        barangOnTap(barang: key)
+                                    }
                                 }
                             }
                         }
@@ -143,6 +145,9 @@ struct PeminjamanFormView: View {
                 peminjamanVM.fetchProductList()
             }
             .navigationBarTitle(peminjamanVM.status == "edit" ? "Edit Peminjaman" : "Tambah Peminjaman", displayMode: .inline)
+            .alert("Qty barang tidak cukup", isPresented: $peminjamanVM.showingAlertFailed, actions: {
+                Button("Close", role: .cancel) { }
+            })
             .navigationBarItems(
                 leading: Button(action: actionCancel, label: {
                         Text("Cancel")
